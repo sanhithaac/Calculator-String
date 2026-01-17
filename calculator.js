@@ -1,4 +1,7 @@
 let display = document.getElementById("display");
+function safesafeEval(expression) {
+  return Function('"use strict"; return (' + expression + ')')();
+}
 
 function append(value) {
     display.value += value;
@@ -10,7 +13,7 @@ function clearDisplay() {
 
 function calculate() {
     try {
-        display.value = eval(display.value);
+        display.value = safeEval(display.value);
     } catch {
         display.value = "Error";
     }
@@ -18,7 +21,7 @@ function calculate() {
 
 // Scientific Functions
 function sqrt() {
-    display.value = Math.sqrt(eval(display.value));
+    display.value = Math.sqrt(safeEval(display.value));
 }
 
 function power() {
@@ -28,19 +31,19 @@ function power() {
 }
 
 function sin() {
-    display.value = Math.sin(eval(display.value) * Math.PI / 180);
+    display.value = Math.sin(safeEval(display.value) * Math.PI / 180);
 }
 
 function cos() {
-    display.value = Math.cos(eval(display.value) * Math.PI / 180);
+    display.value = Math.cos(safeEval(display.value) * Math.PI / 180);
 }
 
 function tan() {
-    display.value = Math.tan(eval(display.value) * Math.PI / 180);
+    display.value = Math.tan(safeEval(display.value) * Math.PI / 180);
 }
 
 function log() {
-    display.value = Math.log10(eval(display.value));
+    display.value = Math.log10(safeEval(display.value));
 }
 
 // String Operations
