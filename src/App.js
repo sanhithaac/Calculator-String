@@ -14,12 +14,14 @@ export default function App() {
   const clearDisplay = () => setDisplay("0");
 
   const calculate = () => {
-    try {
-      setDisplay(eval(display).toString());
-    } catch {
-      setDisplay("Error");
-    }
-  };
+  try {
+    const result = Function('"use strict"; return (' + display + ')')();
+    setDisplay(result.toString());
+  } catch {
+    setDisplay("Error");
+  }
+};
+
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6">
